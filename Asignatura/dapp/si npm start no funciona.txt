@@ -1,0 +1,3 @@
+ejecutar antes del npm start del dapp en caso de error:
+
+export NODE_OPTIONS=--openssl-legacy-provider
