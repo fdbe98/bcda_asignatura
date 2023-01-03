@@ -7,16 +7,21 @@ function HomePage() {
     const owner = useCacheCall("Asignatura", "owner");
     const coordinador = useCacheCall("Asignatura", "coordinador");
     const cerrada = useCacheCall("Asignatura", "cerrada");
-    const es_cerrada = cerrada ? "ABIERTA" : "CERRADA";
+    const es_cerrada = cerrada ? "CERRADA" : "ABIERTA";
     return (
         <div>
-            <p>Página Home de la Asignatura. Creado por owner: {owner}
+            <p>Página Home de la Asignatura.
             </p>
+
+                <p>
+                 Creado por owner: {owner}
+                 </p>
+        
             <p>
                 Coordinador: {coordinador}
             </p>
             <p>
-                Cerrada: {es_cerrada}
+                Estado: {es_cerrada}
             </p>
         </div>
 
