@@ -1,10 +1,15 @@
 import { drizzleReactHooks } from '@drizzle/react-plugin'
+import ModificarCoordinador from "./ModificarCoordinador";
 
-import WhoisWho from "./WhoisWho";
+import { useState } from "react";
+import SoyProfesor from "../roles/SoyProfesor";
+
+
+import WhoisWho2 from "./WhoisWho2";
 
 
 const { useDrizzle, useDrizzleState } = drizzleReactHooks;
-const Header = () => {
+const Header2 = () => {
     const { useCacheCall } = useDrizzle();
     const drizzleState = useDrizzleState(state => state);
 
@@ -17,14 +22,21 @@ const Header = () => {
     3 - profesor
     4 - alumno
     */
- 
-    return (
+   return(<article className="AppMisDatos">
+    <WhoisWho2>
+
+     
         <header className="AppHeader">
             <h1>
                 Asignatura Lite: {nombre}-<em>{curso}</em>
-            </h1>
-        </header>
-    );
+                <br></br>
 
+                <h3>ERES OWNER</h3>
+            </h1>
+        </header >
+       
+
+    </WhoisWho2></article>
+);
 };
-export default Header;
+export default Header2;

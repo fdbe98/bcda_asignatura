@@ -1,4 +1,10 @@
 import { drizzleReactHooks } from '@drizzle/react-plugin'
+import ModificarCoordinador from "../ModificarCoordinador";
+import CerrarAsignatura from "../CerrarAsignatura";
+import SoyOwner from "../roles/SoyOwner";
+import SoyCoordinador from "../roles/SoyCoordinador";
+import SoyProfesor from "../roles/SoyProfesor";
+
 
 function HomePage() {
     const { useDrizzle } = drizzleReactHooks;
@@ -13,16 +19,22 @@ function HomePage() {
             <p>Página Home de la Asignatura.
             </p>
 
-                <p>
-                 Creado por owner: {owner}
-                 </p>
-        
+            <p>
+                Creado por owner: {owner}
+            </p>
+
             <p>
                 Coordinador: {coordinador}
             </p>
             <p>
                 Estado: {es_cerrada}
             </p>
+            <SoyOwner>
+                <ModificarCoordinador />
+            </SoyOwner>
+            <SoyCoordinador>
+                <CerrarAsignatura />
+            </SoyCoordinador>
         </div>
 
     );

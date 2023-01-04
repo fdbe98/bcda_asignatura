@@ -22,16 +22,9 @@ const WhoisWho = () => {
     });
 
 
-
-
-
-
-
-
-
     if (owner === drizzleState.accounts[0]) {
         return (
-            Number("1")
+            1
         );
     }
 
@@ -43,84 +36,84 @@ const WhoisWho = () => {
     }
 
     //Ver quien soy
-    
-        for (let i = 0; i < numero_profesores; i++) {
-    
-            if (rows[i] === drizzleState.accounts[0]) {
-                return (
-                   3
-                );
-            }
-        }
-        
 
+    for (let i = 0; i < numero_profesores; i++) {
+
+        if (rows[i] === drizzleState.accounts[0]) {
             return (
-               4
+                3
             );
-
-            
-
-
-
-
-
-
-
-
-/*
-
-    if (owner === drizzleState.accounts[0]) {
-        return (
-            <header className="AppHeader">
-                <h1>
-                   Soy el owner
-                </h1>
-            </header>
-        );
-    }
-
-
-    else if (coordinador === drizzleState.accounts[0]) {
-        return (
-            <header className="AppHeader">
-                <h1>
-                   Soy coordinador
-                </h1>
-            </header>
-        );
-    }
-
-    //Ver quien soy
-    
-        for (let i = 0; i < numero_profesores; i++) {
-    
-            if (rows[i] === drizzleState.accounts[0]) {
-                return (
-                    <header className="AppHeader">
-                        <h1>
-                            Numero de profesores {numero_profesores} SOY PROFESOR
-                        </h1>
-                    </header>
-                );
-            }
         }
-        
+    }
 
+
+    return (
+        4
+    );
+
+
+
+
+
+
+
+
+
+
+    /*
+    
+        if (owner === drizzleState.accounts[0]) {
             return (
                 <header className="AppHeader">
-                    <tr>
-                        <td><h1>
-                    Soy alumno
+                    <h1>
+                       Soy el owner
                     </h1>
-                    </td>
-                    <td>
-                       Cuenta que estamos usando: {drizzleState.accounts[0]}
-                       </td>
-                    </tr>
                 </header>
             );
+        }
+    
+    
+        else if (coordinador === drizzleState.accounts[0]) {
+            return (
+                <header className="AppHeader">
+                    <h1>
+                       Soy coordinador
+                    </h1>
+                </header>
+            );
+        }
+    
+        //Ver quien soy
+        
+            for (let i = 0; i < numero_profesores; i++) {
+        
+                if (rows[i] === drizzleState.accounts[0]) {
+                    return (
+                        <header className="AppHeader">
+                            <h1>
+                                Numero de profesores {numero_profesores} SOY PROFESOR
+                            </h1>
+                        </header>
+                    );
+                }
+            }
+            
+    
+                return (
+                    <header className="AppHeader">
+                        <tr>
+                            <td><h1>
+                        Soy alumno
+                        </h1>
+                        </td>
+                        <td>
+                           Cuenta que estamos usando: {drizzleState.accounts[0]}
+                           </td>
+                        </tr>
+                    </header>
+                );
+    
+                */
 
-            */
-       
 };
 export default WhoisWho;

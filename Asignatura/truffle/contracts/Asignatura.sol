@@ -153,6 +153,26 @@ contract Asignatura {
         matriculas.push(msg.sender);
     }
 
+     /**
+     * El owner puede matricular a los alumnos
+     *
+     * Impedir que se pueda meter un nombre vacio.
+     *
+     * @param _nombre El nombre del alumno.
+     * @param _email El email del alumno.
+     * @param _addr La dirección del alumno.
+     */
+    function matriculaDir(string memory _nombre, string memory _email, address _addr)
+        public
+        soloNoMatriculados 
+        soloOwner
+    {
+        require(bytes(_nombre).length != 0, "El nombre no puede ser vacio");
+        DatosAlumno memory datos = DatosAlumno(_nombre, _email);
+        datosAlumno[_addr] = datos;
+        matriculas.push(_addr);
+    }
+
     /**
      * El numero de alumnos matriculados.
      *
@@ -195,7 +215,7 @@ array.
         string memory _nombre,
         uint256 _fecha,
         uint256 _porcentaje
-    ) public soloProfesor soloAbierta returns (uint256) {
+    ) public soloCoordinador soloAbierta returns (uint256) {
         require(
             bytes(_nombre).length != 0,
             "El nombre de la evaluacion no puede ser vacio"
@@ -270,6 +290,34 @@ pasada como parametro.
         tipo = nota.tipo;
         calificacion = nota.calificacion;
     }
+
+
+/*
+ * Devuelve el tipo de nota y la calificacion que ha sacado de la direccion del alumno.
+ *
+ * @param evaluacion Indice de una evaluacion en el array de evaluaciones.
+ * @param _direccion
+ * @return tipo El tipo de nota que ha sacado el alumno.
+ * @return calificacion La calificacion que ha sacado el alumno.
+ */
+    function miNotaDir(uint256 evaluacion, address _direccion)
+        public
+        view
+        soloMatriculados
+        returns (TipoNota tipo, uint256 calificacion)
+    {
+        require(
+            evaluacion < evaluaciones.length,
+            "El indice de la evaluacion no existe."
+        );
+
+        Nota memory nota = calificaciones[_direccion][evaluacion];
+
+        tipo = nota.tipo;
+        calificacion = nota.calificacion;
+    }
+
+
 
     // Devuelve la nota final del alumno que llama al método
     // Si el tipo de nota de alguna de las evaluaciones es "Empty" no se le ha asignado la calificación y el método devuelve (Empty, 0)
