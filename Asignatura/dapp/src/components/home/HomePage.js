@@ -27,7 +27,7 @@ function HomePage() {
                 Coordinador: {coordinador}
             </p>
             <p>
-                Estado: {es_cerrada}
+                Estado de la asignatura: {es_cerrada}
             </p>
             <SoyOwner>
                 <ModificarCoordinador />

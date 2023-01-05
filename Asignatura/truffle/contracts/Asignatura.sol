@@ -153,7 +153,7 @@ contract Asignatura {
         matriculas.push(msg.sender);
     }
 
-     /**
+    /**
      * El owner puede matricular a los alumnos
      *
      * Impedir que se pueda meter un nombre vacio.
@@ -162,11 +162,11 @@ contract Asignatura {
      * @param _email El email del alumno.
      * @param _addr La dirección del alumno.
      */
-    function matriculaDir(string memory _nombre, string memory _email, address _addr)
-        public
-        soloNoMatriculados 
-        soloOwner
-    {
+    function matriculaDir(
+        string memory _nombre,
+        string memory _email,
+        address _addr
+    ) public soloNoMatriculados soloOwner {
         require(bytes(_nombre).length != 0, "El nombre no puede ser vacio");
         DatosAlumno memory datos = DatosAlumno(_nombre, _email);
         datosAlumno[_addr] = datos;
@@ -224,6 +224,45 @@ array.
         evaluaciones.push(Evaluacion(_nombre, _fecha, _porcentaje));
         return evaluaciones.length - 1;
     }
+
+    /*
+ * Modifica una prueba de evaluacion de la asignatura. Por ejemplo, el primer parcial, o la practica 3.
+ *
+ * Las evaluaciones se meteran en el array evaluaciones, y nos referiremos a ellas por su posicion en el
+array.
+ *
+ * @param _nombre El nombre de la evaluacion.
+ * @param _fecha La fecha de evaluacion (segundos desde el 1/1/1970).
+ * @param _porcentaje El porcentaje de puntos que proporciona a la nota final.
+ * @param _index
+ */
+    function ModificaEvaluacion(
+        string memory _nombre,
+        uint256 _fecha,
+        uint256 _porcentaje,
+        uint256 _index
+    ) public soloCoordinador soloAbierta {
+
+        Evaluacion memory ev = evaluaciones[_index];
+        ev.nombre = _nombre;
+        ev.fecha = _fecha;
+        ev.porcentaje = _porcentaje;
+        evaluaciones[_index] = ev;
+        
+    }
+
+    /*       function DevolverEvaluacion(uint256 _index) public soloCoordinador soloAbierta returns (string memory _nombre, uint256 _fecha, uint256 _porcentaje) {
+ 
+
+        Evaluacion memory ev = evaluaciones[_index];
+        _nombre = ev.nombre;
+        _fecha = ev.fecha;
+        _porcentaje = ev.porcentaje;
+
+        return (_nombre, _fecha, _porcentaje);
+    }
+
+*/
 
     /**
      * El numero de evaluaciones creadas.
@@ -291,15 +330,14 @@ pasada como parametro.
         calificacion = nota.calificacion;
     }
 
-
-/*
- * Devuelve el tipo de nota y la calificacion que ha sacado de la direccion del alumno.
- *
- * @param evaluacion Indice de una evaluacion en el array de evaluaciones.
- * @param _direccion
- * @return tipo El tipo de nota que ha sacado el alumno.
- * @return calificacion La calificacion que ha sacado el alumno.
- */
+    /*
+     * Devuelve el tipo de nota y la calificacion que ha sacado de la direccion del alumno.
+     *
+     * @param evaluacion Indice de una evaluacion en el array de evaluaciones.
+     * @param _direccion
+     * @return tipo El tipo de nota que ha sacado el alumno.
+     * @return calificacion La calificacion que ha sacado el alumno.
+     */
     function miNotaDir(uint256 evaluacion, address _direccion)
         public
         view
@@ -316,8 +354,6 @@ pasada como parametro.
         tipo = nota.tipo;
         calificacion = nota.calificacion;
     }
-
-
 
     // Devuelve la nota final del alumno que llama al método
     // Si el tipo de nota de alguna de las evaluaciones es "Empty" no se le ha asignado la calificación y el método devuelve (Empty, 0)
@@ -397,21 +433,21 @@ pasada como parametro.
     }
 
     // Modificador para que una función solo la pueda ejecutar el owner
-    modifier soloOwner(){
-        require(msg.sender == owner,"Solo permitido al owner");
+    modifier soloOwner() {
+        require(msg.sender == owner, "Solo permitido al owner");
         _;
     }
 
     // Modificador para que una función solo la pueda ejecutar el coordinador
-    modifier soloCoordinador(){
-        require(msg.sender == coordinador,"Solo permitido al coordinador");
+    modifier soloCoordinador() {
+        require(msg.sender == coordinador, "Solo permitido al coordinador");
         _;
     }
 
     // Modificador para que una función solo la pueda ejecutar el profesor
-    modifier soloProfesor(){
+    modifier soloProfesor() {
         string memory _nombre = datosProfesor[msg.sender];
-        require(bytes(_nombre).length != 0,"Solo permitido al profesor");
+        require(bytes(_nombre).length != 0, "Solo permitido al profesor");
         _;
     }
 
@@ -438,8 +474,8 @@ pasada como parametro.
     }
 
     // Modificador para que una función solo la pueda ejecutar si la asignatura no está cerrada
-    modifier soloAbierta(){
-        require(!cerrada,"Solo permitido si la asignatura no esta cerrada");
+    modifier soloAbierta() {
+        require(!cerrada, "Solo permitido si la asignatura no esta cerrada");
         _;
     }
 

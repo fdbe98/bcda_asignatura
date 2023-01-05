@@ -4,12 +4,14 @@ import Loading from './Loading';
 import Layout from './Layout';
 import HomePage from './home/HomePage';
 import EvaluacionesPage from "./evaluaciones/EvaluacionesPage";
+import EvaluacionDetail from "./evaluaciones/EvaluacionDetail";
 import AlumnosPage from "./alumnos/AlumnosPage";
 import AlumnoDetail from "./alumnos/AlumnoDetail";
 import ProfesoresPage from "./Profesores/ProfesoresPage";
 import CalificacionesPage from "./calificaciones/CalificacionesPage";
 import MisCosasPage from "./misCosas/MisCosasPage";
 import ProfesoresDetail from "./Profesores/ProfesoresDetail";
+import CalificacionesBody_de_una from "./calificaciones/CalificacionesTotal/CalificacionesBody_de_una";
 import NoMatch from './NoMatch';
 function App() {
     return (
@@ -20,11 +22,13 @@ function App() {
                         <Route path="/" element={<Layout />}>
                             <Route index element={<HomePage />} />
                             <Route path="evaluaciones" element={<EvaluacionesPage />} />
+                            <Route path="evaluacion/:evaluacionIndex" element={<EvaluacionDetail />} />
                             <Route path="alumnos" element={<AlumnosPage />} />
                             <Route path="alumnos/:addr" element={<AlumnoDetail />} />
                             <Route path="profesores" element={<ProfesoresPage />} />
-                            <Route path="Profesores/:addr" element={<ProfesoresDetail />} />
+                            <Route path="profesores/:addr" element={<ProfesoresDetail />} />
                             <Route path="calificaciones" element={<CalificacionesPage />} />
+                            <Route path="calificaciones/:i" element={<CalificacionesBody_de_una />} />
                             <Route path="miscosas" element={<MisCosasPage />} />
                             <Route path="*" element={<NoMatch />} />
                         </Route>

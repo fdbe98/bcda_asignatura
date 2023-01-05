@@ -13,7 +13,7 @@ const ProfesorRow = ({ ProfesorIndex }) => {
     return <tr key={"PRO-" + ProfesorIndex}>
         <th>A<sub>{ProfesorIndex}</sub></th>
         <td>{datos}</td>
-        <td><Link to={`/Profesores/${addr}`}>Info</Link></td>
+        <td><Link to={`/profesores/${addr}`}>Info</Link></td>
     </tr>;
 };
 

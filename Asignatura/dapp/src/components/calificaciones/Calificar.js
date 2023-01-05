@@ -5,7 +5,7 @@ const { useDrizzle, useDrizzleState } = drizzleReactHooks;
 
 
 
-const Calificar2 = () => {
+const Calificar = () => {
     const { drizzle } = useDrizzle();
     // Obtener el status de la ultima transaccion enviada:
     const { transactionStack, transactions } = useDrizzleState(drizzleState => ({
@@ -21,7 +21,7 @@ const Calificar2 = () => {
     let [tipo, setTipo] = useState("");
     let [calificacion, setCalificacion] = useState("");
     return (<article className="AppMisDatos">
-        <SoyProfesor>
+        
             <h3>Calificar</h3>
             <form>
                 <p> Dirección del Alumno: &nbsp;
@@ -41,10 +41,8 @@ const Calificar2 = () => {
                         const stackId = drizzle.contracts.Asignatura.methods.califica.cacheSend(alumnoAddr, indexEval, tipo, calificacion);
                         setLastStackID(stackId);
                     }}>Calificar</button>
-                <p> Último estado = {status} </p>
             </form>
-        </SoyProfesor>
     </article>);
 };
 
-export default Calificar2;
+export default Calificar;
