@@ -242,10 +242,8 @@ array.
         uint256 _porcentaje,
         uint256 _index
     ) public soloCoordinador soloAbierta {
-
-        Evaluacion memory ev = Evaluacion(_nombre,_fecha,_porcentaje);
+        Evaluacion memory ev = Evaluacion(_nombre, _fecha, _porcentaje);
         evaluaciones[_index] = ev;
-        
     }
 
     /*       function DevolverEvaluacion(uint256 _index) public soloCoordinador soloAbierta returns (string memory _nombre, uint256 _fecha, uint256 _porcentaje) {
@@ -283,7 +281,7 @@ array.
         uint256 evaluacion,
         TipoNota tipo,
         uint256 calificacion
-    ) public soloProfesor soloAbierta {
+    ) public soloProfesor_o_soloCoordinador soloAbierta {
         require(
             estaMatriculado(alumno),
             "Solo se pueden calificar a un alumno matriculado."
@@ -369,11 +367,12 @@ pasada como parametro.
     function notaFinal(address _addr)
         public
         view
-        soloCoordinador
+        soloProfesor_o_soloCoordinador
         returns (TipoNota tipo, uint256 calificacion)
     {
         return _notaFinal(_addr);
     }
+
 
     function _notaFinal(address _addr)
         private
@@ -445,6 +444,16 @@ pasada como parametro.
     modifier soloProfesor() {
         string memory _nombre = datosProfesor[msg.sender];
         require(bytes(_nombre).length != 0, "Solo permitido al profesor");
+        _;
+    }
+
+    // Modificador para que una función solo la pueda ejecutar el profesor o coordinador
+    modifier soloProfesor_o_soloCoordinador() {
+        string memory _nombre = datosProfesor[msg.sender];
+        require(
+            (bytes(_nombre).length != 0) || msg.sender == coordinador,
+            "Solo permitido al profesor o coordinador"
+        );
         _;
     }
 
