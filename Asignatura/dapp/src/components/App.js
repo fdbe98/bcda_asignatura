@@ -12,6 +12,7 @@ import CalificacionesPage from "./calificaciones/CalificacionesPage";
 import MisCosasPage from "./misCosas/MisCosasPage";
 import ProfesoresDetail from "./Profesores/ProfesoresDetail";
 import CalificacionesBody_de_una from "./calificaciones/CalificacionesTotal/CalificacionesBody_de_una";
+import CalificacionesDetail from "./calificaciones/CalificacionesTotal/CalificacionesDetail";
 import NoMatch from './NoMatch';
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                             <Route path="profesores/:addr" element={<ProfesoresDetail />} />
                             <Route path="calificaciones" element={<CalificacionesPage />} />
                             <Route path="calificaciones/:i" element={<CalificacionesBody_de_una />} />
+                            <Route path="calificacionDetail/:alumnoIndex/:i" element={<CalificacionesDetail />} />
                             <Route path="miscosas" element={<MisCosasPage />} />
                             <Route path="*" element={<NoMatch />} />
                         </Route>

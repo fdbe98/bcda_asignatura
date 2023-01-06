@@ -4,24 +4,28 @@ const { useDrizzle, useDrizzleState } = drizzleReactHooks;
 const SoyAlumno = ({ children }) => {
     const { useCacheCall } = useDrizzle();
     const drizzleState = useDrizzleState(state => state);
-  //  const es_alumno = useCacheCall("Asignatura", "estaMatriculado", drizzleState.accounts[0]);
+    const matriculasLength = useCacheCall("Asignatura", "matriculasLength") || 0;
 
+    //Conseguir los alumnos
 
-    let { es_alumno} = useCacheCall(['Asignatura'],
-        call => {
-            const es_alumno = call("Asignatura", "estaMatriculado", drizzleState.accounts[0]);
-          
-            return { es_alumno};
+    let rows = useCacheCall(['Asignatura'], call => {
+        let rows = [];
+        for (let ei = 0; ei < matriculasLength; ei++) {
+            const addr_alumno = call("Asignatura", "matriculas", ei);
+            rows.push(addr_alumno)
         }
-    );
+        return rows;
+    });
+    for (let i = 0; i < matriculasLength; i++) {
 
-
-
-    if (!es_alumno) {
-        return null
+        if (rows[i] === drizzleState.accounts[0]) {
+            return (
+                <>
+                {children}
+                </>
+            );
+        }
+        
     }
-    return <>
-        {children}
-    </>
 };
 export default SoyAlumno;

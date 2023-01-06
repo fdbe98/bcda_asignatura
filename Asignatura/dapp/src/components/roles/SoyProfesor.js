@@ -25,7 +25,7 @@ const SoyProfesor = ({ children }) => {
                 </>
             );
         }
-        else return null;
+       
     }
 };
 export default SoyProfesor;

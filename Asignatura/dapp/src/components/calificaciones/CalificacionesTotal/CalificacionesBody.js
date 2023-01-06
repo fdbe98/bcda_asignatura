@@ -8,6 +8,7 @@ const CalificacionesBody = () => {
  for (let i = 0; i < ml; i++) {
  rows.push(<CalificacionRow key={"cb-"+i} alumnoIndex={i}/>);
  }
+ 
  return <tbody>{rows}</tbody>;
 };
 export default CalificacionesBody;

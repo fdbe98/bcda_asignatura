@@ -225,7 +225,7 @@ array.
         return evaluaciones.length - 1;
     }
 
-    /*
+    /**
  * Modifica una prueba de evaluacion de la asignatura. Por ejemplo, el primer parcial, o la practica 3.
  *
  * Las evaluaciones se meteran en el array evaluaciones, y nos referiremos a ellas por su posicion en el
@@ -234,19 +234,16 @@ array.
  * @param _nombre El nombre de la evaluacion.
  * @param _fecha La fecha de evaluacion (segundos desde el 1/1/1970).
  * @param _porcentaje El porcentaje de puntos que proporciona a la nota final.
- * @param _index
+ * @param _index El indice de evaluacion
  */
-    function ModificaEvaluacion(
+    function modificaEvaluacion(
         string memory _nombre,
         uint256 _fecha,
         uint256 _porcentaje,
         uint256 _index
     ) public soloCoordinador soloAbierta {
 
-        Evaluacion memory ev = evaluaciones[_index];
-        ev.nombre = _nombre;
-        ev.fecha = _fecha;
-        ev.porcentaje = _porcentaje;
+        Evaluacion memory ev = Evaluacion(_nombre,_fecha,_porcentaje);
         evaluaciones[_index] = ev;
         
     }

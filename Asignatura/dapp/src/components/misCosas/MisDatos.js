@@ -28,15 +28,15 @@ const MisDatos = () => {
                 <SoyProfesor>
                     Soy Profesor
                 </SoyProfesor>
-               
+                <SoyAlumno>
+                    Soy Alumno
+                </SoyAlumno>
             </ul>
         </article>);
 };
-/*
 
- <SoyAlumno>
-                    Soy Alumno
-                </SoyAlumno>
+
+ 
                 
-*/
+
 export default MisDatos;
