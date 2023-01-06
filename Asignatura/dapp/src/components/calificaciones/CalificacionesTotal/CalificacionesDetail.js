@@ -2,18 +2,11 @@ import { drizzleReactHooks } from '@drizzle/react-plugin'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
-const { useDrizzle, useDrizzleState } = drizzleReactHooks;
+const { useDrizzle } = drizzleReactHooks;
 
 const CalificacionesDetail = () => {
     const { drizzle, useCacheCall } = useDrizzle();
-    // Obtener el status de la ultima transaccion enviada:
-    const { transactionStack, transactions } = useDrizzleState(drizzleState => ({
-        transactionStack: drizzleState.transactionStack,
-        transactions: drizzleState.transactions
-    }));
-    const [lastStackID, setLastStackID] = useState(undefined)
-    const txObject = transactions[transactionStack[lastStackID] || 'undefined'];
-    const status = txObject?.status;
+    const [setLastStackID] = useState(undefined)
     // Conservar los valores metidos en el formulario
 
     let [nota, setNota] = useState("");
@@ -30,20 +23,7 @@ const CalificacionesDetail = () => {
         }
     );
 
-    //Calificacion del alumno de la evaluacion i
     const calificacion = useCacheCall("Asignatura", "calificaciones", addr, i);
-
-
-    // return <>
-    //     <ul>
-
-    //         <li><b>Alumno :</b> {alumnoIndex}</li>
-    //         <li>{datos?.nombre}</li>
-    //         <li>  {i}</li>
-    //     </ul>
-    // </>
-
-
 
     return <>
         <header className="AppCalificacion">
@@ -54,7 +34,7 @@ const CalificacionesDetail = () => {
             <li><b>Alumno :</b> {alumnoIndex}</li>
             {i}
         </ul>
-       
+
         <h3>Modificar calificación</h3>
         <h4>{datos?.nombre}</h4>
         <form>
@@ -62,10 +42,10 @@ const CalificacionesDetail = () => {
             <p> Nota (x100): &nbsp;
                 <input key="nota" type="number" name="nota" value={nota} placeholder={calificacion?.calificacion}
                     onChange={ev => setNota(ev.target.value)} /> </p>
-             <p> Tipo: (0=Pendiente 1=N.P. 2=Normal): &nbsp;
-                    <input key="tipo" type="number" name="tipo" value={tipo} placeholder="Tipo de nota" onChange={ev => setTipo(ev.target.value)} /> </p>
-            
-            
+            <p> Tipo: (0=Pendiente 1=N.P. 2=Normal): &nbsp;
+                <input key="tipo" type="number" name="tipo" value={tipo} placeholder="Tipo de nota" onChange={ev => setTipo(ev.target.value)} /> </p>
+
+
             <button key="submit" className="pure-button" type="button"
                 onClick={ev => {
                     ev.preventDefault();

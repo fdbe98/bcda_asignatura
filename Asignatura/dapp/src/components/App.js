@@ -14,6 +14,7 @@ import ProfesoresDetail from "./Profesores/ProfesoresDetail";
 import CalificacionesBody_de_una from "./calificaciones/CalificacionesTotal/CalificacionesBody_de_una";
 import CalificacionesDetail from "./calificaciones/CalificacionesTotal/CalificacionesDetail";
 import NoMatch from './NoMatch';
+
 function App() {
     return (
         <div className="App">

@@ -20,17 +20,17 @@ const MisDatos = () => {
                 <li>Dirección: <span style={{ color: "blue" }}>{address}</span></li>
                 <li>Balance: <span style={{ color: "blue" }}>{balance}</span> weis</li>
                 <SoyOwner>
-                <li>Soy Owner</li>
+                <li>Rol: Owner</li>
                     
                 </SoyOwner>
                 <SoyCoordinador>
-                <li>   Soy Coordinador</li>
+                <li>Rol: Coordinador</li>
                 </SoyCoordinador>
                 <SoyProfesor>
-                <li>    Soy Profesor</li>
+                <li>Rol: Profesor</li>
                 </SoyProfesor>
                 <SoyAlumno>
-                <li>    Soy Alumno</li>
+                <li>Rol: Alumno</li>
                 </SoyAlumno>
             </ul>
         </article>);

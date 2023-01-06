@@ -2,18 +2,11 @@ import { drizzleReactHooks } from '@drizzle/react-plugin'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import SoyCoordinador from '../roles/SoyCoordinador';
-const { useDrizzle, useDrizzleState } = drizzleReactHooks;
+const { useDrizzle } = drizzleReactHooks;
 
 const EvaluacionDetail = () => {
     const { drizzle, useCacheCall } = useDrizzle();
-    // Obtener el status de la ultima transaccion enviada:
-    const { transactionStack, transactions } = useDrizzleState(drizzleState => ({
-        transactionStack: drizzleState.transactionStack,
-        transactions: drizzleState.transactions
-    }));
-    const [lastStackID, setLastStackID] = useState(undefined)
-    const txObject = transactions[transactionStack[lastStackID] || 'undefined'];
-    const status = txObject?.status;
+    const [setLastStackID] = useState(undefined)
     // Conservar los valores metidos en el formulario
 
     let [nombre, setNombre] = useState("");
@@ -21,20 +14,20 @@ const EvaluacionDetail = () => {
     let [porcentaje, setPorcentaje] = useState("");
     let { evaluacionIndex } = useParams();
 
-    let {eva} = useCacheCall(['Asignatura'],
-    call => {
-    const eva = call("Asignatura", "evaluaciones", evaluacionIndex);
-    return {eva};
-    }
+    let { eva } = useCacheCall(['Asignatura'],
+        call => {
+            const eva = call("Asignatura", "evaluaciones", evaluacionIndex);
+            return { eva };
+        }
     );
 
-   // const datos = useCacheCall("Asignatura", "datosAlumno", addr);
+    // const datos = useCacheCall("Asignatura", "datosAlumno", addr);
     return <>
         <header className="AppEvaluacion">
             <h2> Evaluación Info</h2>
         </header>
         <ul>
-            
+
             <li><b>Evaluacion :</b> E<sub>{evaluacionIndex}</sub></li>
         </ul>
 
@@ -65,7 +58,7 @@ const EvaluacionDetail = () => {
 
 
 
-        <Link to="/evaluaciones">Volver</Link>
+        <p><Link to="/evaluaciones">Volver</Link></p>
     </>
 };
 export default EvaluacionDetail;

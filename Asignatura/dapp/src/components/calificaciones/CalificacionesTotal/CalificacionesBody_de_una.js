@@ -31,6 +31,7 @@ const CalificacionesBody_de_una = () => {
 
     return (
         <>
+        <h1>Evaluación</h1>
             <SoyCoordinador>
                 <tbody>{thead}</tbody>
                 <tbody>{rows}</tbody>
@@ -41,7 +42,8 @@ const CalificacionesBody_de_una = () => {
                 <tbody>{rows}</tbody>
                 
             </SoyProfesor>
-            <Link to="/calificaciones">Volver</Link>
+            <p><Link to="/calificaciones">Volver</Link></p>
+            
         </>
     )
 };

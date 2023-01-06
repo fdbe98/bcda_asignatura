@@ -17,7 +17,7 @@ const CalificacionRow_de_una = ({ alumnoIndex }) => {
     let cells = useCacheCall(['Asignatura'], call => {
         if (!alumnoAddr) { return []; }
         let cells = [];
-        const evaluacionesLength = call("Asignatura", "evaluacionesLength") || 0;
+
         for (let ei = 0; ei < 1; ei++) {
             const nota = call("Asignatura", "calificaciones", alumnoAddr, i);
             cells.push(
@@ -32,6 +32,7 @@ const CalificacionRow_de_una = ({ alumnoIndex }) => {
         }
         return cells;
     })
+    
     return <tr key={"d" + alumnoIndex}>
         <th>A<sub>{alumnoIndex}</sub></th>
         <td>{alumnoName}</td>

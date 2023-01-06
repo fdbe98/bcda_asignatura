@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { drizzleReactHooks } from '@drizzle/react-plugin'
 //import SoyProfesor from "../roles/SoyProfesor";
-const { useDrizzle, useDrizzleState } = drizzleReactHooks;
+const { useDrizzle } = drizzleReactHooks;
 
 
 
 const AnadirAlumnoDireccion = () => {
     const { drizzle } = useDrizzle();
-    // Obtener el status de la ultima transaccion enviada:
-    const { transactionStack, transactions } = useDrizzleState(drizzleState => ({
-        transactionStack: drizzleState.transactionStack,
-        transactions: drizzleState.transactions
-    }));
-    const [lastStackID, setLastStackID] = useState(undefined)
-    const txObject = transactions[transactionStack[lastStackID] || 'undefined'];
-    const status = txObject?.status;
+    const [setLastStackID] = useState(undefined)
     // Conservar los valores metidos en el formulario
 
     let [nombre, setNombre] = useState("");

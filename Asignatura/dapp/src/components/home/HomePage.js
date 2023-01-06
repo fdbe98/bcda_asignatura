@@ -3,7 +3,6 @@ import ModificarCoordinador from "../ModificarCoordinador";
 import CerrarAsignatura from "../CerrarAsignatura";
 import SoyOwner from "../roles/SoyOwner";
 import SoyCoordinador from "../roles/SoyCoordinador";
-import SoyProfesor from "../roles/SoyProfesor";
 
 
 function HomePage() {
@@ -29,6 +28,7 @@ function HomePage() {
             <p>
                 Estado de la asignatura: {es_cerrada}
             </p>
+            <p>------------------------------------</p>
             <SoyOwner>
                 <ModificarCoordinador />
             </SoyOwner>
