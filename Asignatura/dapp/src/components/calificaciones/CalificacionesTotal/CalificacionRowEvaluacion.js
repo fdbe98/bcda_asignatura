@@ -4,7 +4,7 @@ import SoyProfesor from '../../roles/SoyProfesor';
 const { useDrizzle } = drizzleReactHooks;
 
 
-const CalificacionRow_de_una = ({ alumnoIndex }) => {
+const CalificacionRowEvaluacion = ({ alumnoIndex }) => {
     const { useCacheCall } = useDrizzle();
     let { i } = useParams();
 
@@ -18,21 +18,20 @@ const CalificacionRow_de_una = ({ alumnoIndex }) => {
         if (!alumnoAddr) { return []; }
         let cells = [];
 
-        for (let ei = 0; ei < 1; ei++) {
-            const nota = call("Asignatura", "calificaciones", alumnoAddr, i);
-            cells.push(
-                <td key={"p2-" + alumnoIndex + "-" + ei}>
-                    {nota?.tipo === "0" ? "" :
-                        ""}
-                    {nota?.tipo === "1" ? "N.P." :
-                        ""}
-                    {nota?.tipo === "2" ? (nota?.calificacion / 100).toFixed(2) : ""}
-                </td>
-            );
-        }
+        const nota = call("Asignatura", "calificaciones", alumnoAddr, i);
+        cells.push(
+            <td key={"p2-" + alumnoIndex + "-"}>
+                {nota?.tipo === "0" ? "" :
+                    ""}
+                {nota?.tipo === "1" ? "N.P." :
+                    ""}
+                {nota?.tipo === "2" ? (nota?.calificacion / 100).toFixed(2) : ""}
+            </td>
+        );
+
         return cells;
     })
-    
+
     return <tr key={"d" + alumnoIndex}>
         <th>A<sub>{alumnoIndex}</sub></th>
         <td>{alumnoName}</td>
@@ -57,4 +56,4 @@ const CalificacionRow_de_una = ({ alumnoIndex }) => {
 };
 
 */
-export default CalificacionRow_de_una;
+export default CalificacionRowEvaluacion;

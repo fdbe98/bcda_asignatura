@@ -1,6 +1,6 @@
 import { drizzleReactHooks } from "@drizzle/react-plugin";
 import { useParams, Link } from "react-router-dom";
-import CalificacionRow_de_una from "./CalificacionRow_de_una";
+import CalificacionRowEvaluacion from "./CalificacionRowEvaluacion";
 import SoyProfesor from "../../roles/SoyProfesor";
 import SoyCoordinador from "../../roles/SoyCoordinador";
 const { useDrizzle } = drizzleReactHooks;
@@ -10,7 +10,7 @@ const { useDrizzle } = drizzleReactHooks;
 
 
 
-const CalificacionesBody_de_una = () => {
+const CalificacionesBodyEvaluacion = () => {
     const { useCacheCall } = useDrizzle();
     let { i } = useParams();
     const ml = useCacheCall("Asignatura", "matriculasLength") || 0;
@@ -26,7 +26,7 @@ const CalificacionesBody_de_una = () => {
 
 
     for (let u = 0; u < ml; u++) {
-        rows.push(<CalificacionRow_de_una key={"cb-" + u} alumnoIndex={u} i={i} />);
+        rows.push(<CalificacionRowEvaluacion key={"cb-" + u} alumnoIndex={u} i={i} />);
     }
 
     return (
@@ -49,4 +49,4 @@ const CalificacionesBody_de_una = () => {
 };
 
 
-export default CalificacionesBody_de_una;
+export default CalificacionesBodyEvaluacion;

@@ -1,0 +1,35 @@
+Alumnos:
+Francisco de Borja Esteban García
+Pablo Ruiz Giles
+
+NOTA: Se ha modificado ligeramente el script "rellenar.js" para incluir datos básicos con las nuevas funcionalidades:
+
+Mejoras opcionales:
+
+3.1  Crear una página que liste todos los profesores de la asignatura.
+
+Hemos creado la carpeta Profesores, la cual contiene los componentes que han sido creados.
+
+3.2 Crear un formulario para añadir nuevos profesores. Este formulario solo debe mostrarse si el usuario conectado es el owner.
+
+Se ha creado el componente Anadirprofesor 
+
+4.3 Crear un formulario para que el owner del contrato pueda matricular a nuevos alumnos.
+
+Se ha creado el componente de AnadirAlumnoDireccion para que el owner pueda matricular a un alumno. También se ha creado el método de contrato de matriculaDir para poder incluir la dirección del contrato.
+
+5.2 Añadir algo que permita obtener un listado con las notas de un alumno en todas las evaluaciones. Esta funcionalidad solo debe estar disponible para el propio alumno.
+
+Se ha utilizado el componente de MisNotas.
+
+5.4  Añadir algo para que el coordinador o un profesor de la asignatura puedan obtener un listado con la notas final de todos los alumnos en la asignatura.
+
+Se ha creado un modificador que sea de solo_coordinador o solo_profesor para que ambos puedan llamar al método de NotaFinal.
+
+6.1 Añadir unos indicadores que informen sobre los roles del usuario: si es owner, coordinador, profesor o alumno.
+
+Hemos creado un componente para cada rol, donde busca mediante métodos del contrato donde se ubica la dirección de la cuenta
+
+2.2
+
+Se ha creado un método modificarEvaluacion() en el contrato donde se le pasa el índice de la evaluación a editar con nuevos valores

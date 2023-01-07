@@ -9,11 +9,7 @@ pragma solidity ^0.8.16;
 contract Asignatura {
     /// Version 2022 Lite - Teoria
     string public version = "2022 Lite";
-    /**
-     * address del profesor que ha desplegado el contrato.
-     * El contrato lo despliega el profesor.
-     */
-    address public profesor;
+
 
     // Array con las direcciones de los profesores añadidos
     address[] public profesores;
@@ -246,18 +242,7 @@ array.
         evaluaciones[_index] = ev;
     }
 
-    /*       function DevolverEvaluacion(uint256 _index) public soloCoordinador soloAbierta returns (string memory _nombre, uint256 _fecha, uint256 _porcentaje) {
- 
 
-        Evaluacion memory ev = evaluaciones[_index];
-        _nombre = ev.nombre;
-        _fecha = ev.fecha;
-        _porcentaje = ev.porcentaje;
-
-        return (_nombre, _fecha, _porcentaje);
-    }
-
-*/
 
     /**
      * El numero de evaluaciones creadas.
