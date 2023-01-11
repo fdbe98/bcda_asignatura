@@ -20,6 +20,11 @@ const MisNotasBody = () => {
    const drizzleState = useDrizzleState(state => state);
    const address = drizzleState.accounts[0];
    const evaluacionesLength = useCacheCall("Asignatura", "evaluacionesLength") || 0;
+
+   let notas = useCacheCall(['Asignatura'],
+      call => call("Asignatura", "miNotaFinal")
+   );
+
    let rows = useCacheCall(['Asignatura'], call => {
       let rows = [];
       for (let ei = 0; ei < evaluacionesLength; ei++) {
@@ -37,6 +42,19 @@ const MisNotasBody = () => {
                </td>
             </tr>);
       }
+      rows.push(
+         <>
+            <td>Final</td>
+            <td>
+
+               {notas?.tipo === "0" ? "" :
+                  ""}
+               {notas?.tipo === "1" ? "N.P." :
+                  ""}
+               {notas?.tipo === "2" ? (notas?.calificacion / 100).toFixed(2) : ""}
+            </td>
+         </>
+      );
       return rows;
    });
    return <tbody>{rows}</tbody>;
